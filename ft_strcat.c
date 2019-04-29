@@ -10,6 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+/*
+** ft_strcat: writes s2 to the end of s1
+** to avoid unpredictable behaviour:
+** 1) s1 and s2 may not overlap
+** 2) dest must have enough space for the result
+*/
+
 #include "libft.h"
 
 char	*ft_strcat(char *restrict s1, char const *restrict s2)
