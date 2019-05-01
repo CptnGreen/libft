@@ -21,10 +21,16 @@
 
 #define FILENAME "./test"
 
+void		toupper_for_striter(char *c)
+{
+	*c = toupper(*c);
+}
+
 int		main(int ac, char **av)
 {
 	char	*tmp1;
 	char	*tmp2;
+	char	**tmp;
 	int	res_or;
 	int	res_ft;
 	int	num;
@@ -146,6 +152,39 @@ int		main(int ac, char **av)
 		// ft_strcmp
 		res = (strcmp(strdup(av[1]), ft_strdup(av[1])) == 0) ? ("OK") : ("ERROR!");
 		printf("ft_strdup(\"%s\"): %s\n", av[1], res);
+
+		// ft_strdel
+		tmp1 = strdup(av[1]);
+		ft_strdel(&tmp1);
+		res = (tmp1 == NULL) ? ("OK") : ("ERROR!");
+		printf("ft_strdel(\"%s\"): %s\n", av[1], res);
+
+		// ft_strclr
+		tmp1 = strdup(av[1]);
+		res = "OK";
+		num = strlen(tmp1);
+		ft_strclr(tmp1);
+		while (num >= 0)
+		{
+			if (tmp1[num--] != '\0')
+			{
+				res = "ERROR!";
+				break ;
+			}
+		}
+		printf("ft_strclr(\"%s\"): %s\n", av[1], res);
+		free(tmp1);
+
+		// ft_striter
+		tmp1 = strdup(av[1]);
+		ft_striter(tmp1, &toupper_for_striter);
+		printf("ft_striter(\"%s\", &toupper_for_striter): %s\n", av[1], tmp1);
+		free(tmp1);
+
+		//ft_strtrim
+		tmp1 = ft_strtrim(av[1]);
+		printf("ft_strtrim(\"%s\") = %s\n", av[1], tmp1);
+		free(tmp1);
 	}
 	if (ac > 2)
 	{
@@ -181,6 +220,11 @@ int		main(int ac, char **av)
 		}
 		free(tmp1);
 		free(tmp2);
+
+		// ft_strjoin
+		tmp1 = ft_strjoin(av[1], av[2]);
+		printf("ft_strjoin(\"%s\", \"%s\") = %s\n", av[1], av[2], tmp1);
+		free(tmp1);
 
 		// ft_strchr
 		if (strchr(av[1], sym2) == NULL)
@@ -236,6 +280,18 @@ int		main(int ac, char **av)
 
 		// ft_itoa
 		printf("ft_itoa(%d) = %s\n", num, ft_itoa(num));
+
+		// ft_strsplit
+		tmp = ft_strsplit(av[1], sym2);
+		printf("ft_strsplit(\"%s\", \'%c\') = {", av[1], sym2);
+		while (tmp)
+		{
+			printf("\"%s\"", *tmp++);
+			res = (tmp) ? (", ") : ("}\n");
+			printf("%s", res);
+		}
+		printf("\n");
+		free(tmp);
 	}
 	if (ac > 3 && num >= 0)
 	{
@@ -248,23 +304,27 @@ int		main(int ac, char **av)
 		printf("ft_strncpy(\"%s\", \"%s\", %d): %s\n", av[1], av[2], num, res);
 		if (strcmp(res, "ERROR!") == 0)
 		{
+			printf("------------ERROR!--------------\n");
 			printf("or_strncpy(\"%s\", \"%s\", %d) = %s\n", av[1], av[2], num, tmp1);
 			printf("ft_strncpy(\"%s\", \"%s\", %d) = %s\n", av[1], av[2], num, tmp2);
+			printf("--------------------------------\n");
 		}
 		free(tmp1);
 		free(tmp2);
 
 		//ft_strlcpy
 		tmp1 = strdup(av[1]);
-		tmp2 = strdup(av[2]);
+		tmp2 = strdup(av[1]);
 		num1 = strlcpy(tmp1, av[2], num);
 		num2 = ft_strlcpy(tmp2, av[2], num);
 		res = (strcmp(tmp1, tmp2) == 0 && num1 == num2) ? ("OK") : ("ERROR!");
 		printf("ft_strlcpy(\"%s\", \"%s\", %d): %s\n", av[1], av[2], num, res);
 		if (strcmp(res, "ERROR!") == 0)
 		{
+			printf("------------ERROR!--------------\n");
 			printf("or_strlcpy(\"%s\", \"%s\", %d) = %d ==> %s\n", av[1], av[2], num, num1, tmp1);
 			printf("ft_strlcpy(\"%s\", \"%s\", %d) = %d ==> %s\n", av[1], av[2], num, num2, tmp2);
+			printf("--------------------------------\n");
 		}
 		free(tmp1);
 		free(tmp2);
@@ -346,17 +406,34 @@ int		main(int ac, char **av)
 		num1 = strlcat(tmp1, av[2], num);
 		num2 = ft_strlcat(tmp2, av[2], num);
 		res = (strcmp(tmp1, tmp2) == 0 && num1 == num2) ? ("OK") : ("ERROR!");
-		//if (strcmp(res, "ERROR!") == 0)
-		//{
+		if (strcmp(res, "ERROR!") == 0)
+		{
 			printf("------------ERROR!--------------\n");
 			printf("or_strlcat(\"%s\", \"%s\", %2d) = %2d ==> %s\n", av[1], av[2], num, num1, tmp1);
 			printf("ft_strlcat(\"%s\", \"%s\", %2d) = %2d ==> %s\n", av[1], av[2], num, num2, tmp2);
 			printf("--------------------------------\n");
-		//}
-		//else
-		//	printf("ft_strlcat(\"%s\", \"%s\", %d): %s\n", av[1], av[2], num, res);
+		}
+		else
+			printf("ft_strlcat(\"%s\", \"%s\", %d): %s\n", av[1], av[2], num, res);
 		free(tmp1);
 		free(tmp2);
+
+		printf("--------------------------------\n");
+
+		// ft_memalloc
+		tmp1 = (char *)ft_memalloc(num);
+		printf("ft_memalloc(%d): WRITTEN, NOT CHECKED\n", num);
+		free(tmp1);
+
+		// ft_strnew
+		tmp1 = ft_strnew(num);
+		printf("ft_strnew(%d): WRITTEN, NOT CHECKED\n", num);
+		free(tmp1);
+
+		// ft_strsub
+		//res = ft_strsub(av[1], num, 5);
+		//printf("ft_strsub(\"%s\", %d, %d) = %s\n", av[1], num, 5);
+		//free(res);
 	}
 	close(fd);
 	printf("--------------------------------\n");
