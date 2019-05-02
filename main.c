@@ -40,6 +40,7 @@ int		main(int ac, char **av)
 	char	sym1;
 	char	sym2;
 	char	*res;
+	int	i;
 
 	printf("\n--------------------------------\n");
 	printf("WELCOME TO LIBFT CHECK PROGRAM!");
@@ -255,6 +256,20 @@ int		main(int ac, char **av)
 					av[1], av[2], \
 					((strcmp(strstr(av[1], av[2]), ft_strstr(av[1], av[2])) == 0) ? \
 					 ("OK") : ("ERROR!")));
+
+		// ft_strsplit
+		tmp = ft_strsplit(av[1], sym2);
+		printf("ft_strsplit(\"%s\", \'%c\') = {", av[1], sym2);
+		i = 0;
+		while (tmp[i])
+		{
+			printf("\"%s\"", tmp[i]);
+			i++;
+			res = (tmp[i]) ? (", ") : ("}\n");
+			printf("%s", res);
+		}
+		i = 0;
+		free(tmp);
 	}
 	if (ac > 3)
 	{
@@ -280,18 +295,6 @@ int		main(int ac, char **av)
 
 		// ft_itoa
 		printf("ft_itoa(%d) = %s\n", num, ft_itoa(num));
-
-		// ft_strsplit
-		tmp = ft_strsplit(av[1], sym2);
-		printf("ft_strsplit(\"%s\", \'%c\') = {", av[1], sym2);
-		while (tmp)
-		{
-			printf("\"%s\"", *tmp++);
-			res = (tmp) ? (", ") : ("}\n");
-			printf("%s", res);
-		}
-		printf("\n");
-		free(tmp);
 	}
 	if (ac > 3 && num >= 0)
 	{
@@ -434,6 +437,39 @@ int		main(int ac, char **av)
 		//res = ft_strsub(av[1], num, 5);
 		//printf("ft_strsub(\"%s\", %d, %d) = %s\n", av[1], num, 5);
 		//free(res);
+		
+		// ft_memccpy
+		tmp1 = strdup(av[1]);
+		tmp2 = strdup(av[1]);
+		memccpy(tmp1, av[2], '\0', num);
+		ft_memccpy(tmp2, av[2], '\0', num);
+		res = (memcmp(tmp1, tmp2, MAX_OF_TWO(num, strlen(av[1]))) == 0) ? ("OK") : ("ERROR!");
+		if (strcmp(res, "ERROR!") == 0)
+		{
+			printf("------------ERROR!--------------\n");
+			printf("or_memccpy(\"%s\", \"%s\", %2d, \'\\0\') = %s\n", av[1], av[2], num, tmp1);
+			printf("ft_memccpy(\"%s\", \"%s\", %2d, \'\\0\') = %s\n", av[1], av[2], num, tmp2);
+			printf("--------------------------------\n");
+		}
+		else
+			printf("ft_memccpy(\"%s\", \"%s\", %2d, \'\\0\'): %s\n", av[1], av[2], num, res);
+
+		// ft_memmove
+		tmp1 = strdup(av[1]);
+		tmp2 = strdup(av[1]);
+		memmove(tmp1, av[2], num);
+		ft_memmove(tmp2, av[2], num);
+		res = (memcmp(tmp1, tmp2, MAX_OF_TWO(num, strlen(av[1]))) == 0) ? ("OK") : ("ERROR!");
+		if (strcmp(res, "ERROR!") == 0)
+		{
+			printf("------------ERROR!--------------\n");
+			printf("or_memmove(\"%s\", \"%s\", %2d) = %s\n", av[1], av[2], num, tmp1);
+			printf("ft_memmove(\"%s\", \"%s\", %2d) = %s\n", av[1], av[2], num, tmp2);
+			printf("--------------------------------\n");
+		}
+		else
+			printf("ft_memmove(\"%s\", \"%s\", %2d): %s\n", av[1], av[2], num, res);
+
 	}
 	close(fd);
 	printf("--------------------------------\n");
