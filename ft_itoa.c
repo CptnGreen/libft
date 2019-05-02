@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 04:43:07 by slisandr          #+#    #+#             */
-/*   Updated: 2019/04/16 00:11:22 by slisandr         ###   ########.fr       */
+/*   Updated: 2019/05/02 21:39:58 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 
 #define ARRAY_SIZE(Value, Length) ((Value < 0) ? (Length + 2) : (Length + 1))
 
-char	*ft_itoa(int n)
+static int	get_len(int n)
 {
 	int		len;
 	int		n_copy;
-	char		*str;
-	int		i;
 
 	len = 0;
 	if (n == 0)
@@ -33,6 +31,17 @@ char	*ft_itoa(int n)
 			len += 1;
 		}
 	}
+	return (len);
+}
+
+char		*ft_itoa(int n)
+{
+	int		len;
+	int		n_copy;
+	char	*str;
+	int		i;
+
+	len = get_len(n);
 	str = (char *)malloc(sizeof(char) * ARRAY_SIZE(n, len));
 	str[ARRAY_SIZE(n, len) - 1] = '\0';
 	if (n == 0)

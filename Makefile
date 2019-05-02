@@ -6,7 +6,7 @@
 #    By: slisandr <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/12 21:31:09 by slisandr          #+#    #+#              #
-#    Updated: 2019/04/22 22:32:16 by slisandr         ###   ########.fr        #
+#    Updated: 2019/05/02 20:37:21 by slisandr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,6 @@ re: fclean all exec
 
 
 exec: $(LIB)
-	@ gcc -I. main.c -L . -lft -lbsd -o $(EXEC)
+	@ gcc -I. main.c -L . -lft -o $(EXEC) # -lbsd
 norm:
 	@ norminette $(SRC) libft.h

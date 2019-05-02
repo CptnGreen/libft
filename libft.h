@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 21:38:18 by slisandr          #+#    #+#             */
-/*   Updated: 2019/04/18 20:46:11 by slisandr         ###   ########.fr       */
+/*   Updated: 2019/05/02 20:41:25 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,16 @@ void		*ft_memcpy(void *restrict dst, void const *restrict src, size_t n);
 void		*ft_memccpy(void *dest, void const *src, int c, size_t n);
 void		*ft_memmove(void *dest, void const *src, size_t n);
 
-int		ft_isascii(int c);
-int		ft_isprint(int c);
-int		ft_isalnum(int c);
-int		ft_isalpha(int c);
+int			ft_isascii(int c);
+int			ft_isprint(int c);
+int			ft_isalnum(int c);
+int			ft_isalpha(int c);
 
-int		ft_isdigit(int c);
+int			ft_isdigit(int c);
 
-int		ft_toupper(int c);
-int		ft_tolower(int c);
-int		ft_atoi(char const *str);
+int			ft_toupper(int c);
+int			ft_tolower(int c);
+int			ft_atoi(char const *str);
 char		*ft_itoa(int n);
 
 size_t		ft_strlen(char const *str);
@@ -54,10 +54,10 @@ char		*ft_strcat(char *restrict s1, char const *restrict s2);
 char		*ft_strncat(char *restrict s1, char const *restrict s2, size_t n);
 size_t		ft_strlcat(char *dst, char const *src, size_t size);
 
-int		ft_strcmp(char const *s1, char const *s2);
-int		ft_strncmp(char const *s1, char const *s2, size_t n);
-int		ft_strequ(char const *s1, char const *s2);
-int		ft_strnequ(char const *s1, char const *s2, size_t n);
+int			ft_strcmp(char const *s1, char const *s2);
+int			ft_strncmp(char const *s1, char const *s2, size_t n);
+int			ft_strequ(char const *s1, char const *s2);
+int			ft_strnequ(char const *s1, char const *s2, size_t n);
 
 char		*ft_strchr(const char *s, int c);
 char		*ft_strrchr(const char *s, int c);
@@ -84,6 +84,7 @@ char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char		*ft_strsub(char const *s, unsigned int start, size_t len);
 char		*ft_strjoin(char const *s1, char const *s2);
 char		*ft_strtrim(char const *s);
+
 char		**ft_strsplit(char const *s, char c);
 
 #endif

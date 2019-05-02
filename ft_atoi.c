@@ -6,30 +6,11 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/14 22:25:46 by slisandr          #+#    #+#             */
-/*   Updated: 2019/04/15 01:32:13 by slisandr         ###   ########.fr       */
+/*   Updated: 2019/05/02 21:44:45 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static char const	*get_str_without_prefix(\
-		char const *str, unsigned int *j, short *sign);
-
-int					ft_atoi(char const *str)
-{
-	unsigned int	i;
-	short			sign;
-	int				res;
-
-	res = 0;
-	sign = 1;
-	i = 0;
-	if (ft_strlen(get_str_without_prefix(str, &i, &sign)) >= 20)
-		return ((sign == -1) ? (0) : (-1));
-	while (str[i] >= '0' && str[i] <= '9')
-		res = res * 10 + (str[i++] - '0');
-	return (res * sign);
-}
 
 static char const	*get_str_without_prefix(\
 		char const *str, unsigned int *j, short *sign)
@@ -45,4 +26,20 @@ static char const	*get_str_without_prefix(\
 	else if (str[*j] == '+')
 		(*j)++;
 	return (str + *j);
+}
+
+int					ft_atoi(char const *str)
+{
+	unsigned int	i;
+	short			sign;
+	int				res;
+
+	res = 0;
+	sign = 1;
+	i = 0;
+	if (ft_strlen(get_str_without_prefix(str, &i, &sign)) >= 20)
+		return ((sign == -1) ? (0) : (-1));
+	while (str[i] >= '0' && str[i] <= '9')
+		res = res * 10 + (str[i++] - '0');
+	return (res * sign);
 }

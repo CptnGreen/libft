@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 21:48:17 by slisandr          #+#    #+#             */
-/*   Updated: 2019/04/22 22:55:17 by slisandr         ###   ########.fr       */
+/*   Updated: 2019/05/02 20:54:57 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <bsd/string.h>
+//#include <bsd/string.h>
 #include <strings.h>
 #include <ctype.h>
 
@@ -434,9 +434,14 @@ int		main(int ac, char **av)
 		free(tmp1);
 
 		// ft_strsub
-		//res = ft_strsub(av[1], num, 5);
-		//printf("ft_strsub(\"%s\", %d, %d) = %s\n", av[1], num, 5);
-		//free(res);
+		num1 = 3;
+		num2 = num;
+		if (strlen(av[1]) >= num1)
+		{
+			res = ft_strsub(av[1], num1, num2);
+			printf("ft_strsub(\"%s\", %d, %d) = %s\n", av[1], num1, num2, res);
+			free(res);
+		}
 		
 		// ft_memccpy
 		tmp1 = strdup(av[1]);

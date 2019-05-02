@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/05/02 21:33:35 by slisandr          #+#    #+#             */
+/*   Updated: 2019/05/02 21:34:08 by slisandr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 /*
-** Description: ft_strjoin() allocates (with malloc(3)) and returns a "fresh" string
-** ending with '\0', result of concatenation of s1 and s2. If the allocation fails
-** the function returns NULL.
+** Description: ft_strjoin() allocates (with malloc(3)) and returns a "fresh"
+** string ending with '\0', result of concatenation of s1 and s2. If the
+** allocation fails the function returns NULL.
 */
 
 char	*ft_strjoin(char const *s1, char const *s2)

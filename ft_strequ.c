@@ -1,6 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strequ.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/05/02 21:35:37 by slisandr          #+#    #+#             */
+/*   Updated: 2019/05/02 21:35:46 by slisandr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-/* Description: Lexicographical comparison between s1 and s2. If the 2 strings
+/*
+** Description: Lexicographical comparison between s1 and s2. If the 2 strings
 ** are identical the function returns 1, or 0 otherwise.
 */
 

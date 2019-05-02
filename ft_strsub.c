@@ -1,9 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strsub.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/05/02 20:45:34 by slisandr          #+#    #+#             */
+/*   Updated: 2019/05/02 20:57:39 by slisandr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-/* Description: ft_strsub() allocates (with malloc(3)) and returns a "fresh" substring
-** from the string given as argument. The substring begins at indexstart and is of
-** size len. If start and len aren't refering to a valid substring, the behaviour is
-** undefined. If the allocation fails, the function returns NULL.
+/*
+** Description: ft_strsub() allocates (with malloc(3)) and returns a "fresh"
+** substring from the string given as argument. The substring begins at
+** indexstart and is of size len. If start and len aren't refering to a valid
+** substring, the behaviour is undefined. If the allocation fails,
+** the function returns NULL.
 */
 
 char	*ft_strsub(char const *s, unsigned int start, size_t len)
