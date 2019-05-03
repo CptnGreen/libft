@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-//#include <bsd/string.h>
+#include <bsd/string.h>
 #include <strings.h>
 #include <ctype.h>
 
@@ -57,26 +57,19 @@ int		main(int ac, char **av)
 	{
 		sym1 = av[1][0];
 
-		// ft_putstr_fd
+		// ft_putendl
 		if (fd != -1)
 		{
-			ft_putstr_fd(av[1], fd);
-			ft_putchar_fd('\n', fd);
-			printf("ft_putstr_fd() has just successfully printed \"%s\\n\" to %s, check it!\n", \
+			ft_putendl_fd(av[1], fd);
+			printf("ft_putendl_fd() has just successfully printed \"%s\\n\" to %s, check it!\n", \
 					av[1], FILENAME);
 		}
 		else
-			printf("ft_putstr_fd(): ERROR! - test file failed to open");
+			printf("ft_putendl_fd(): ERROR! - test file failed to open");
 
-		// ft_putchar
-		printf("ft_putchar(sym1):\n");
-		ft_putchar(sym1);
-		printf("\n");
-
-		// ft_putstr
-		printf("ft_putstr(\"%s\"):\n", av[1]);
-		ft_putstr(av[1]);
-		printf("\n");
+		// ft_putendl
+		printf("ft_putendl(\"%s\"):\n", av[1]);
+		ft_putendl(av[1]);
 
 		// ft_isascii
 		res = (isascii(sym1) == ft_isascii(sym1)) ? ("OK") : ("ERROR!");
@@ -282,7 +275,7 @@ int		main(int ac, char **av)
 					num, FILENAME);
 		}
 		else
-			printf("ft_putnbr(%d, \"%s\"): ERROR!", num, FILENAME);
+			printf("ft_putnbr_fd(%d, \"%s\"): ERROR!\n", num, FILENAME);
 
 		// ft_putnbr
 		printf("ft_putnbr(%d):\n", num);
@@ -421,8 +414,6 @@ int		main(int ac, char **av)
 		free(tmp1);
 		free(tmp2);
 
-		printf("--------------------------------\n");
-
 		// ft_memalloc
 		tmp1 = (char *)ft_memalloc(num);
 		printf("ft_memalloc(%d): WRITTEN, NOT CHECKED\n", num);
@@ -475,8 +466,36 @@ int		main(int ac, char **av)
 		else
 			printf("ft_memmove(\"%s\", \"%s\", %2d): %s\n", av[1], av[2], num, res);
 
+		// ft_memchr
+		tmp1 = memchr(av[1], sym2, num);
+		tmp2 = ft_memchr(av[1], sym2, num);
+		if (tmp1 != NULL && tmp2 != NULL)
+			res = (memcmp(tmp1, tmp2, strlen(av[1])) == 0 || (tmp1 == NULL && tmp2 == NULL)) ? ("OK") : ("ERROR!");
+		if (strcmp(res, "ERROR!") == 0)
+		{
+			printf("------------ERROR!--------------\n");
+			printf("or_memchr(\"%s\", \'%c\', %2d) = %s\n", av[1], sym2, num, tmp1);
+			printf("ft_memchr(\"%s\", \'%c\', %2d) = %s\n", av[1], sym2, num, tmp2);
+			printf("--------------------------------\n");
+		}
+		else
+			printf("ft_memchr(\"%s\", \'%c\', %2d): %s\n", av[1], sym2, num, res);
+
+		// ft_memcmp
+		num1 = memcmp(av[1], av[2], num);
+		num2 = ft_memcmp(av[1], av[2], num);
+		res = (num1 == num2) ? ("OK") : ("ERROR!");
+		if (strcmp(res, "ERROR!") == 0)
+		{
+			printf("------------ERROR!--------------\n");
+			printf("or_memcmp(\"%s\", \"%s\", %2d) = %d\n", av[1], av[2], num, num1);
+			printf("ft_memcmp(\"%s\", \"%s\", %2d) = %d\n", av[1], av[2], num, num2);
+			printf("--------------------------------\n");
+		}
+		else
+			printf("ft_memcmp(\"%s\", \"%s\", %2d): %s\n", av[1], av[2], num, res);
 	}
 	close(fd);
-	printf("--------------------------------\n");
+	printf("------------THE END-------------\n");
 	return (0);
 }
