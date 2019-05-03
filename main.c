@@ -143,7 +143,7 @@ int		main(int ac, char **av)
 		res = (strlen(av[1]) == ft_strlen(av[1])) ? ("OK") : ("ERROR!");
 		printf("ft_strlen(\"%s\"): %s\n", av[1], res);
 
-		// ft_strcmp
+		// ft_strdup
 		res = (strcmp(strdup(av[1]), ft_strdup(av[1])) == 0) ? ("OK") : ("ERROR!");
 		printf("ft_strdup(\"%s\"): %s\n", av[1], res);
 
@@ -185,9 +185,19 @@ int		main(int ac, char **av)
 		sym2 = av[2][0];
 
 		// ft_strcmp
-		printf("ft_strcmp(\"%s\", \"%s\"): %s\n", \
-				av[1], av[2], \
-				(strcmp(av[1], av[2]) == ft_strcmp(av[1], av[2])) ? ("OK") : ("ERROR!"));
+		num1 = strcmp(av[1], av[2]);
+		num2 = ft_strcmp(av[1], av[2]);
+		res = (num1 == num2) ? ("OK") : ("ERROR!");
+		printf("ft_strcmp(\"%s\", \"%s\"): %s\n", av[1], av[2], res);
+
+		// ft_strequ
+		num1 = strcmp(av[1], av[2]);
+		num2 = ft_strequ(av[1], av[2]);
+		if ((num2 == 1 && num1 == 0) || (num2 != 1 && num1 != 0))
+			res = "OK";
+		else if ((num2 == 1 && num1 != 0) || (num2 != 1 && num1 == 0))
+			res = "ERROR!";
+		printf("ft_strequ(\"%s\", \"%s\"): %s\n", av[1], av[2], res);
 
 		// ft_strcpy
 		tmp1 = strdup(av[1]);
@@ -296,8 +306,12 @@ int		main(int ac, char **av)
 		tmp2 = strdup(av[1]);
 		strncpy(tmp1, av[2], num);
 		ft_strncpy(tmp2, av[2], num);
-		res = (strcmp(tmp1, tmp2) == 0) ? ("OK") : ("ERROR!");
-		printf("ft_strncpy(\"%s\", \"%s\", %d): %s\n", av[1], av[2], num, res);
+		if (tmp1 == NULL && tmp2 == NULL)
+			res = "OK";
+		else if ((tmp1 == NULL && tmp2 != NULL) || (tmp1 != NULL && tmp2 == NULL))
+			res = "ERROR!";
+		else
+			res = (strcmp(tmp1, tmp2) == 0) ? ("OK") : ("ERROR!");
 		if (strcmp(res, "ERROR!") == 0)
 		{
 			printf("------------ERROR!--------------\n");
@@ -305,8 +319,12 @@ int		main(int ac, char **av)
 			printf("ft_strncpy(\"%s\", \"%s\", %d) = %s\n", av[1], av[2], num, tmp2);
 			printf("--------------------------------\n");
 		}
-		free(tmp1);
-		free(tmp2);
+		else
+			printf("ft_strncpy(\"%s\", \"%s\", %d): %s\n", av[1], av[2], num, res);
+		if (tmp1)
+			free(tmp1);
+		if (tmp2)
+			free(tmp2);
 
 		//ft_strlcpy
 		tmp1 = strdup(av[1]);
@@ -494,6 +512,15 @@ int		main(int ac, char **av)
 		}
 		else
 			printf("ft_memcmp(\"%s\", \"%s\", %2d): %s\n", av[1], av[2], num, res);
+
+		// ft_strnequ
+		num1 = strcmp(av[1], av[2]);
+		num2 = ft_strnequ(av[1], av[2], num);
+		if ((num2 == 1 && num1 == 0) || (num2 != 1 && num1 != 0))
+			res = "OK";
+		else if ((num2 == 1 && num1 != 0) || (num2 != 1 && num1 == 0))
+			res = "ERROR!";
+		printf("ft_strnequ(\"%s\", \"%s\", %d): %s\n", av[1], av[2], num, res);
 	}
 	close(fd);
 	printf("------------THE END-------------\n");

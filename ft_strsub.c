@@ -27,7 +27,7 @@ char	*ft_strsub(char const *s, unsigned int start, size_t len)
 	str = (char *)malloc(sizeof(char) * (len + 1));
 	if (str)
 	{
-		ft_strncpy(str, s + start, len);
+		ft_strncpy(str, s + start - 1, len);
 		str[len] = '\0';
 		return (str);
 	}

@@ -29,8 +29,10 @@ void	*ft_memccpy(void *dest, void const *src, int c, size_t n)
 	i = 0;
 	d = (char *)dest;
 	s = (char *)src;
-	while (s[i] != c && i < n)
+	while (s[i] != c)
 	{
+		if (i >= n)
+			break ;
 		d[i] = s[i];
 		i++;
 	}
