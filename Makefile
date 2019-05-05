@@ -6,7 +6,7 @@
 #    By: slisandr <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/12 21:31:09 by slisandr          #+#    #+#              #
-#    Updated: 2019/05/05 15:31:16 by ak               ###   ########.fr        #
+#    Updated: 2019/05/05 16:55:19 by ak               ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ SRC = ft_putchar.c ft_putstr.c ft_putendl.c ft_putnbr.c \
 	  ft_striter.c ft_striteri.c ft_strmap.c ft_strmapi.c \
 	  ft_strequ.c ft_strnequ.c \
 	  ft_strsub.c ft_strjoin.c ft_strtrim.c ft_strsplit.c \
-	  ft_lstnew.c ft_lstdelone.c ft_lstadd.c
+	  ft_lstnew.c ft_lstdelone.c ft_lstadd.c ft_lstiter.c ft_lstmap.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -61,3 +61,6 @@ exec: $(NAME)
 	@ gcc -I. main.c -L . -lft -lbsd -o $(EXEC) # -lbsd
 norm:
 	@ norminette $(SRC) libft.h
+
+so: $(OBJ)
+	@ gcc -shared -o libft.so $(OBJ)
