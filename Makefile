@@ -6,7 +6,7 @@
 #    By: slisandr <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/12 21:31:09 by slisandr          #+#    #+#              #
-#    Updated: 2019/05/05 16:55:19 by ak               ###   ########.fr        #
+#    Updated: 2019/05/05 20:39:42 by slisandr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ SRC = ft_putchar.c ft_putstr.c ft_putendl.c ft_putnbr.c \
 
 OBJ = $(SRC:.c=.o)
 
-TEST_FILE = /Users/slisandr/libft/test
+TEST_FILE = ./test
 EXEC = program
 
 .PHONY: all clean fclean re norm
@@ -58,9 +58,6 @@ re: fclean all
 
 
 exec: $(NAME)
-	@ gcc -I. main.c -L . -lft -lbsd -o $(EXEC) # -lbsd
+	@ gcc -I. main.c -L . -lft -o $(EXEC) # -lbsd
 norm:
 	@ norminette $(SRC) libft.h
-
-so: $(OBJ)
-	@ gcc -shared -o libft.so $(OBJ)

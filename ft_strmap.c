@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 21:02:49 by slisandr          #+#    #+#             */
-/*   Updated: 2019/05/02 21:33:19 by slisandr         ###   ########.fr       */
+/*   Updated: 2019/05/05 21:57:55 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,16 @@ char	*ft_strmap(char const *s, char (*f)(char))
 	char	*str;
 
 	str = ft_strdup(s);
-	i = 0;
-	while (str[i])
+	if (str)
 	{
-		str[i] = f(s[i]);
-		i++;
+		i = 0;
+		while (str[i])
+		{
+			str[i] = f(s[i]);
+			i++;
+		}
+		return (str);
 	}
-	return (str);
+	else
+		return (NULL);
 }

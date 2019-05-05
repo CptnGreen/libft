@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/16 02:25:01 by slisandr          #+#    #+#             */
-/*   Updated: 2019/04/16 02:39:31 by slisandr         ###   ########.fr       */
+/*   Updated: 2019/05/05 20:29:27 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ char	*ft_strncat(char *restrict s1, char const *restrict s2, size_t n)
 	size_t		i;
 	size_t		j;
 
-	if (s1 == NULL)
-		return (NULL);
 	i = 0;
 	while (s1[i])
 		i++;

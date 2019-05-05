@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 20:45:34 by slisandr          #+#    #+#             */
-/*   Updated: 2019/05/05 02:19:36 by ak               ###   ########.fr       */
+/*   Updated: 2019/05/05 22:10:44 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
 	char	*str;
 
-	str = ft_strnew(len + 1);
+	str = ft_strnew(len);
 	if (str)
 	{
-		ft_strncpy(str, s + start, len);
+		ft_strncpy(str, s + start, len + 1);
 		str[len] = '\0';
 		return (str);
 	}
