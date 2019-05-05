@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 21:48:17 by slisandr          #+#    #+#             */
-/*   Updated: 2019/05/02 20:54:57 by slisandr         ###   ########.fr       */
+/*   Updated: 2019/05/04 22:06:46 by ak               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -453,20 +453,21 @@ int		main(int ac, char **av)
 		}
 		
 		// ft_memccpy
+		sym1 = 'l';
 		tmp1 = strdup(av[1]);
 		tmp2 = strdup(av[1]);
-		memccpy(tmp1, av[2], '\0', num);
-		ft_memccpy(tmp2, av[2], '\0', num);
+		memccpy(tmp1, av[2], sym1, num);
+		ft_memccpy(tmp2, av[2], sym1, num);
 		res = (memcmp(tmp1, tmp2, MAX_OF_TWO(num, strlen(av[1]))) == 0) ? ("OK") : ("ERROR!");
-		if (strcmp(res, "ERROR!") == 0)
+		if (strcmp(res, "ERROR!") == 0 || 1)
 		{
 			printf("------------ERROR!--------------\n");
-			printf("or_memccpy(\"%s\", \"%s\", %2d, \'\\0\') = %s\n", av[1], av[2], num, tmp1);
-			printf("ft_memccpy(\"%s\", \"%s\", %2d, \'\\0\') = %s\n", av[1], av[2], num, tmp2);
+			printf("or_memccpy(\"%s\", \"%s\", %c, %2d) = %s\n", av[1], av[2], sym1, num, tmp1);
+			printf("ft_memccpy(\"%s\", \"%s\", %c, %2d) = %s\n", av[1], av[2], sym1, num, tmp2);
 			printf("--------------------------------\n");
 		}
 		else
-			printf("ft_memccpy(\"%s\", \"%s\", %2d, \'\\0\'): %s\n", av[1], av[2], num, res);
+			printf("ft_memccpy(\"%s\", \"%s\", %c, %2d): %s\n", av[1], av[2], sym1, num, res);
 
 		// ft_memmove
 		tmp1 = strdup(av[1]);

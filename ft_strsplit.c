@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 19:54:02 by slisandr          #+#    #+#             */
-/*   Updated: 2019/05/02 20:35:51 by slisandr         ###   ########.fr       */
+/*   Updated: 2019/05/05 02:54:59 by ak               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,10 +104,10 @@ char				**ft_strsplit(char const *s, char c)
 	size_t		num;
 
 	num = count_words(s, c);
-	ar = (num == 0) ? (NULL) : ((char **)malloc(sizeof(char *) * (num + 1)));
+	ar = (char **)malloc(sizeof(char *) * (num + 1));
 	if (ar)
 	{
-		ar[num] = NULL;
+		ar[num] = (num == 0) ? (ft_strnew(1)) : (NULL);
 		distribute_words_delim(ar, s, c);
 		return (ar);
 	}

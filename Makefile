@@ -6,13 +6,13 @@
 #    By: slisandr <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/12 21:31:09 by slisandr          #+#    #+#              #
-#    Updated: 2019/05/02 20:37:21 by slisandr         ###   ########.fr        #
+#    Updated: 2019/05/05 15:31:16 by ak               ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CFLAGS = -Wall -Werror -Wextra
 
-LIB = libft.a
+NAME = libft.a
 SRC = ft_putchar.c ft_putstr.c ft_putendl.c ft_putnbr.c \
       ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
 	  ft_atoi.c ft_itoa.c \
@@ -30,7 +30,8 @@ SRC = ft_putchar.c ft_putstr.c ft_putendl.c ft_putnbr.c \
 	  ft_memdel.c ft_strdel.c ft_strclr.c \
 	  ft_striter.c ft_striteri.c ft_strmap.c ft_strmapi.c \
 	  ft_strequ.c ft_strnequ.c \
-	  ft_strsub.c ft_strjoin.c ft_strtrim.c ft_strsplit.c
+	  ft_strsub.c ft_strjoin.c ft_strtrim.c ft_strsplit.c \
+	  ft_lstnew.c ft_lstdelone.c ft_lstadd.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -39,11 +40,11 @@ EXEC = program
 
 .PHONY: all clean fclean re norm
 
-all: $(LIB)
+all: $(NAME)
 
-$(LIB): $(OBJ)
-	@ ar rc $(LIB) $(OBJ)
-	@ ranlib $(LIB)
+$(NAME): $(OBJ)
+	@ ar rc $(NAME) $(OBJ)
+	@ ranlib $(NAME)
 $(OBJ): $(SRC)
 	@ gcc $(CFLAGS) -I. -c $(SRC)
 
@@ -51,12 +52,12 @@ $(OBJ): $(SRC)
 clean:
 	@ rm -f $(OBJ)
 fclean: clean
-	@ rm -f $(LIB)
-re: fclean all exec
+	@ rm -f $(NAME)
+re: fclean all
 
 
 
-exec: $(LIB)
+exec: $(NAME)
 	@ gcc -I. main.c -L . -lft -lbsd -o $(EXEC) # -lbsd
 norm:
 	@ norminette $(SRC) libft.h

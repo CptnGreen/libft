@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 04:43:07 by slisandr          #+#    #+#             */
-/*   Updated: 2019/05/02 21:39:58 by slisandr         ###   ########.fr       */
+/*   Updated: 2019/05/05 12:38:44 by ak               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ char		*ft_itoa(int n)
 	char	*str;
 	int		i;
 
+	if (n == -2147483648)
+		return ("-2147483648");
 	len = get_len(n);
 	str = (char *)malloc(sizeof(char) * ARRAY_SIZE(n, len));
 	str[ARRAY_SIZE(n, len) - 1] = '\0';

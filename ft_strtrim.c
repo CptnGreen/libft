@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 20:41:44 by slisandr          #+#    #+#             */
-/*   Updated: 2019/05/02 20:44:11 by slisandr         ###   ########.fr       */
+/*   Updated: 2019/05/05 02:27:17 by ak               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,17 @@ char		*ft_strtrim(char const *s)
 	l = ft_strlen(s);
 	beg = find_prefix_end_index(s, l);
 	end = find_suffix_start_index(s, l);
-	str = ft_strnew(end - beg + 2);
-	i = 0;
-	while (i < end - beg + 1)
+	if (beg > end)
+		return (ft_strnew(1));
+	else
 	{
-		str[i] = s[beg + i];
-		i++;
+		str = ft_strnew(end - beg + 2);
+		i = 0;
+		while (i < end - beg + 1)
+		{
+			str[i] = s[beg + i];
+			i++;
+		}
+		return (str);
 	}
-	return (str);
 }

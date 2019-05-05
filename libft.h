@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 21:38:18 by slisandr          #+#    #+#             */
-/*   Updated: 2019/05/02 20:41:25 by slisandr         ###   ########.fr       */
+/*   Updated: 2019/05/05 12:55:47 by ak               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@
 # define MIN_OF_TWO(Value1, Value2) ((Value1 < Value2) ? (Value1) : (Value2))
 # define MAX_OF_TWO(Value1, Value2) ((Value1 > Value2) ? (Value1) : (Value2))
 # define ABS(Value) ((Value >= 0) ? (Value) : (Value * (-1)))
+
+typedef struct	s_list
+{
+		void		*content;
+		size_t		content_size;
+		struct s_list	*next;
+}		t_list;
 
 void		ft_putchar(char c);
 void		ft_putstr(char const *str);
@@ -92,5 +99,16 @@ char		*ft_strjoin(char const *s1, char const *s2);
 char		*ft_strtrim(char const *s);
 
 char		**ft_strsplit(char const *s, char c);
+
+/*
+** BONUS PART
+*/
+
+t_list		*ft_lstnew(void const *content, size_t content_size);
+void		ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
+void		ft_lstdel(t_list **alst, void (*del)(void *, size_t));
+void		ft_lstadd(t_list **alst, t_list *new);
+void		ft_lstiter(t_list *lst, void (*f)(t_list *elem));
+t_list		*ft_lsmap(t_list *lst, t_list *(*f)(t_list *elem));
 
 #endif
