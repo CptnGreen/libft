@@ -6,7 +6,7 @@
 #    By: slisandr <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/12 21:31:09 by slisandr          #+#    #+#              #
-#    Updated: 2019/05/05 20:39:42 by slisandr         ###   ########.fr        #
+#    Updated: 2019/05/06 01:10:35 by ak               ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SRC = ft_putchar.c ft_putstr.c ft_putendl.c ft_putnbr.c \
 	  ft_strchr.c ft_strrchr.c \
 	  ft_memchr.c \
 	  ft_strstr.c ft_strnstr.c \
-	  ft_strcpy.c ft_strncpy.c ft_strlcpy.c \
+	  ft_strcpy.c ft_strncpy.c \
 	  ft_strcat.c ft_strncat.c ft_strlcat.c \
 	  ft_strlen.c \
 	  ft_memalloc.c ft_strnew.c \
@@ -58,6 +58,6 @@ re: fclean all
 
 
 exec: $(NAME)
-	@ gcc -I. main.c -L . -lft -o $(EXEC) # -lbsd
+	@ gcc -I. main.c -L . -lft -lbsd -o $(EXEC) # -lbsd
 norm:
 	@ norminette $(SRC) libft.h

@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 04:43:07 by slisandr          #+#    #+#             */
-/*   Updated: 2019/05/05 22:21:47 by slisandr         ###   ########.fr       */
+/*   Updated: 2019/05/06 02:06:22 by ak               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	get_len(int n)
 	return (len);
 }
 
-void		get_array(char *str, int n, int len)
+static void		get_array(char *str, int n, int len)
 {
 	int		i;
 	int		n_copy;

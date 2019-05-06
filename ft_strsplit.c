@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 19:54:02 by slisandr          #+#    #+#             */
-/*   Updated: 2019/05/05 23:09:34 by slisandr         ###   ########.fr       */
+/*   Updated: 2019/05/06 02:00:07 by ak               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,9 @@ char				**ft_strsplit(char const *s, char c)
 	size_t		num;
 
 	num = count_words(s, c);
-	ar = (char **)malloc(sizeof(char *) * (num + 1));
+	ar = (char **)malloc(sizeof(char *) * ((num == 0) ? (0) : (num + 1)));
+	if (num == 0)
+		return (ar);
 	if (ar)
 	{
 		ar[num] = NULL;
