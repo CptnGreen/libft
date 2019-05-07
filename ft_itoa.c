@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 04:43:07 by slisandr          #+#    #+#             */
-/*   Updated: 2019/05/06 02:06:22 by ak               ###   ########.fr       */
+/*   Updated: 2019/05/07 21:34:50 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #define ARRAY_SIZE(Value, Length) ((Value < 0) ? (Length + 2) : (Length + 1))
 
-static int	get_len(int n)
+static int		get_len(int n)
 {
 	int		len;
 	int		n_copy;
@@ -51,7 +51,7 @@ static void		get_array(char *str, int n, int len)
 	}
 }
 
-char		*ft_itoa(int n)
+char			*ft_itoa(int n)
 {
 	int		len;
 	char	*str;
