@@ -12,6 +12,8 @@
 
 .PHONY: all clean fclean re norm
 
+CC = gcc
+
 CFLAGS = -Wall -Werror -Wextra
 
 NAME = libft.a
@@ -106,13 +108,13 @@ OBJ = $(addprefix $(OBJ_DIR)/,$(SRC_RAW:.c=.o))
 EXEC = program
 
 
-all: $(NAME)
+all: $(NAME) test
 
 $(NAME): $(OBJ_DIR) $(OBJ)
 	@ ar rc $(NAME) $(OBJ)
 	@ ranlib $(NAME)
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@ gcc $(CFLAGS) -I "includes/" -c $< -o $@
+	@ $(CC) $(CFLAGS) -I "includes/" -c $< -o $@
 $(OBJ_DIR):
 	@ mkdir -p $(OBJ_DIR)
 
@@ -129,3 +131,11 @@ exec: $(NAME)
 	@ gcc -I "includes/" main.c -L . -lft -o $(EXEC)
 norm:
 	@ norminette $(SRC_DIR) includes
+
+tests.out: test/*.c src/*.c includes/*.h
+	@echo Compiling $@
+	@$(CC) $(CFLAGS) -I "includes/" src/*.c test/unity_v2_5_1/unity.c test/*.c -o tests.out
+
+.PHONY: test
+test: tests.out
+	@./tests.out
