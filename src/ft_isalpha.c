@@ -22,5 +22,5 @@ static int		ft_islower(int c)
 
 int				ft_isalpha(int c)
 {
-	return ((ft_isupper(c) != 0 || ft_islower(c) != 0) ? (1) : (0));
+	return ((ft_isupper(c) != 0 || ft_islower(c) != 0) ? (1024) : (0));
 }

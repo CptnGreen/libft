@@ -131,11 +131,3 @@ exec: $(NAME)
 	@ gcc -I "includes/" main.c -L . -lft -o $(EXEC)
 norm:
 	@ norminette $(SRC_DIR) includes
-
-tests.out: test/*.c src/*.c includes/*.h
-	@echo Compiling $@
-	@$(CC) $(CFLAGS) -I "includes/" src/*.c test/unity_v2_5_1/unity.c test/*.c -o tests.out
-
-.PHONY: test
-test: tests.out
-	@./tests.out

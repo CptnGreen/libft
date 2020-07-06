@@ -18,7 +18,8 @@ char	**get_matrix_of_char(unsigned int rows, unsigned int cols, char c)
 	unsigned int		i;
 	unsigned int		j;
 
-	if (!(matrix = (char **)malloc((rows + 1) * sizeof(char *))))
+	if (rows == 0 ||										\
+		!(matrix = (char **)malloc((rows + 1) * sizeof(char *))))
 		return (NULL);
 	i = 0;
 	while (i < rows)
