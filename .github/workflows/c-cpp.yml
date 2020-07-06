@@ -13,9 +13,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: install ruby
-      run: sudo apt install ruby
     - name: install ceedling
-      run: gem install ceedling
+      run: sudo gem install ceedling
     - name: run tests
       run: ceedling
