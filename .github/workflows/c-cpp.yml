@@ -1,0 +1,21 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: install ruby
+      run: sudo apt install ruby
+    - name: install ceedling
+      run: gem install ceedling
+    - name: run tests
+      run: ceedling
