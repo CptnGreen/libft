@@ -13,7 +13,9 @@
 #include "libft.h"
 
 /*
-** Description: ft_strsub() allocates (with malloc(3)) and returns a "fresh"
+** Description:
+**
+** ft_strsub() allocates (with malloc(3)) and returns a "fresh"
 ** substring from the string given as argument. The substring begins at
 ** indexstart and is of size len. If start and len aren't refering to a valid
 ** substring, the behaviour is undefined. If the allocation fails,
