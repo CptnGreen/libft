@@ -12,16 +12,6 @@
 
 #include "libft.h"
 
-/*
-** ft_strsplit() allocates (with malloc(3)) and returnes
-** an array of "fresh" strings (all ending with '\0',
-** including the array itself) obtained by splitting s using
-** the character c as a delimeter. If the allocation fails
-** the function returnes NULL.
-** Example: ft_split("*hello*fellow***students*", '*')
-** returnes the array ["hello", "fellow", "students"].
-*/
-
 static size_t		skip_prefix(char const *s, char c)
 {
 	size_t	i;
@@ -97,6 +87,16 @@ static size_t		count_words(char const *s, char c)
 	else
 		return (0);
 }
+
+/*
+** ft_strsplit() allocates (with malloc(3)) and returnes
+** an array of "fresh" strings (all ending with '\0',
+** including the array itself) obtained by splitting s using
+** the character c as a delimeter. If the allocation fails
+** the function returnes NULL.
+** Example: ft_split("*hello*fellow***students*", '*')
+** returnes the array ["hello", "fellow", "students"].
+*/
 
 char				**ft_strsplit(char const *s, char c)
 {

@@ -12,7 +12,7 @@
 
 .PHONY: all clean fclean re norm
 
-CC = gcc
+CC = clang
 
 CFLAGS = -Wall -Werror -Wextra
 
