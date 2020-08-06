@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: slisandr <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: aimelda <aimelda@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/12 21:31:09 by slisandr          #+#    #+#              #
-#    Updated: 2020/03/10 23:04:10 by slisandr         ###   ########.fr        #
+#    Updated: 2020/08/05 10:40:10 by aimelda          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,8 +79,10 @@ SRC_RAW = \
 			ft_strtrim.c \
 			ft_strsplit.c \
 			ft_lstnew.c \
+			ft_lstdel.c \
 			ft_lstdelone.c \
 			ft_lstadd.c \
+			ft_lstadd_back.c \
 			ft_lstiter.c \
 			ft_lstmap.c \
 			get_matrix_of_char.c \

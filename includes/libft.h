@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aimelda <aimelda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 21:38:18 by slisandr          #+#    #+#             */
-/*   Updated: 2020/03/07 14:42:36 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/08/05 10:39:28 by aimelda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,9 @@
 
 typedef struct		s_list
 {
-	void			*content;
-	size_t			content_size;
-	struct s_list	*next;
-}					t_list;
+	void				*content;
+	struct s_list		*next;
+}				t_list;
 
 /*
 ** MANDATORY PART
@@ -109,12 +108,14 @@ char			**ft_strsplit(char const *s, char c);
 ** LISTS
 */
 
-t_list			*ft_lstnew(void const *content, size_t content_size);
-void			ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
-void			ft_lstdel(t_list **alst, void (*del)(void *, size_t));
+t_list			*ft_lstnew(void *content);
+void			ft_lstdelone(t_list *alst, void (*del)(void *));
+void			ft_lstdel(t_list **alst, void (*del)(void *));
 void			ft_lstadd(t_list **alst, t_list *new);
-void			ft_lstiter(t_list *lst, void (*f)(t_list *elem));
-t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+void			ft_lstadd_back(t_list **alst, t_list *new);
+void			ft_lstiter(t_list *lst, void (*f)(void *));
+t_list			*ft_lstmap(t_list *lst, void *(*f)(void *),
+					void (*del)(void *));
 
 /*
 ** PERSONAL ADDITIONS
