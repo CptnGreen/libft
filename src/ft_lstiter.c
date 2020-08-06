@@ -3,25 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aimelda <aimelda@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/05 19:49:05 by slisandr          #+#    #+#             */
-/*   Updated: 2019/05/05 19:53:15 by slisandr         ###   ########.fr       */
+/*   Created: 2019/09/12 22:03:09 by aimelda           #+#    #+#             */
+/*   Updated: 2020/06/22 17:49:36 by aimelda          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/*
-** ft_lstiter() iterates the list *lst* and applies the function *f*
-** to each link. Return value: none.
-*/
-
-void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
 	while (lst)
 	{
-		f(lst);
+		f(lst->content);
 		lst = lst->next;
 	}
 }
