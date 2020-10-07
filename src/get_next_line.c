@@ -6,7 +6,7 @@
 /*   By: slisandr <slisandr@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 17:50:19 by slisandr          #+#    #+#             */
-/*   Updated: 2020/09/28 05:10:13 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/09/30 02:34:18 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*
 ** Returns:
 ** - (-1) if couldn't find '\n' in a string
-** - some integer - position of the first '\n' found in the string
+** - some integer - position of the first '\n' - if it was found in the string
 */
 
 int		get_endline_symbol_position(char *tail)
@@ -33,6 +33,11 @@ int		get_endline_symbol_position(char *tail)
 	else
 		return (-1);
 }
+
+/*
+** This function appends contents of the buff to the tail and
+** returns pointer to the updated tail (ptr)
+*/
 
 char	*increase_tail(char *tail, char *buff)
 {
@@ -57,18 +62,19 @@ char	*increase_tail(char *tail, char *buff)
 }
 
 /*
-** This function chops line ('\n'-ending piece) from the tail
+** This function chops '\n'-ending piece from the tail and stores it
+** into line
+**
 ** It returns:
 ** - (0) if there is nothing left to cut
 ** - (1) if cut successfully
 */
 
-int		cut_off_line(char **tail, char **buff, char **line)
+int		cut_off_line(char **tail, char **line)
 {
 	int		endl_position;
 	char	*leftover;
 
-	*tail = increase_tail(*tail, *buff);
 	endl_position = get_endline_symbol_position(*tail);
 	if (endl_position > -1)
 	{
@@ -86,14 +92,10 @@ int		cut_off_line(char **tail, char **buff, char **line)
 ** there is nothing more to be appended to it
 */
 
-int		cut_from_remainder(char **tail, char **line, char **buff)
+int		cut_from_remainder(char **tail, char **line)
 {
-	if (cut_off_line(tail, buff, line))
-	{
-		ft_strdel(buff);
+	if (cut_off_line(tail, line))
 		return (1);
-	}
-	ft_strdel(buff);
 	if (ft_strlen(*tail) > 0)
 	{
 		*line = ft_strdup(*tail);
@@ -108,13 +110,15 @@ int		cut_from_remainder(char **tail, char **line, char **buff)
 ** - (-1) on error
 ** - (1) if successfully read new line
 ** - (0) if no more lines present
+**
+** PS: Why 12000? Not sure but it seems that upper limit for 
+** the quantity of file descriptors is 2^20 but 12K is always enough
 */
 
 int		get_next_line(int const fd, char **line)
 {
 	static char		*tail[12000];
 	char			*buff;
-	int				got_new_line;
 	int				ret;
 
 	buff = ft_strnew(BUFF_SIZE);
@@ -125,13 +129,13 @@ int		get_next_line(int const fd, char **line)
 	}
 	while ((ret = read(fd, buff, BUFF_SIZE)) > 0)
 	{
-		got_new_line = cut_off_line(&tail[fd], &buff, line);
+		tail[fd] = increase_tail(tail[fd], buff);
 		ft_strdel(&buff);
-		if (got_new_line == 1)
+		if (cut_off_line(&tail[fd], line))
 			return (1);
 		buff = ft_strnew(BUFF_SIZE);
 	}
-	if ((got_new_line = cut_from_remainder(&tail[fd], line, &buff)))
+	if (cut_from_remainder(&tail[fd], line))
 		return (1);
 	ft_strdel(&tail[fd]);
 	return (0);

@@ -39,7 +39,7 @@
     - includes/**
   :support:
     - test/support
-  :libraries: []
+  :libraries: [.]
 
 :defines:
   # in order to add common defines:
@@ -91,7 +91,7 @@
   :flag: "-l${1}"
   :path_flag: "-L ${1}"
   :system: []    # for example, you might list 'm' to grab the math library
-  :test: []
+  :test: [ft]
   :release: []
 
 :plugins:
@@ -101,6 +101,7 @@
     - stdout_pretty_tests_report
     - module_generator
     - compile_commands_json
+    - xml_tests_report
 
 :module_generator:
   :inc_root: test/includes/

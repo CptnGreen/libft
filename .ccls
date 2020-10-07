@@ -1,4 +1,0 @@
-clang
-%compile_commands.json
--I/var/lib/gems/2.7.0/gems/ceedling-0.30.0/vendor/unity/src
--Iincludes
