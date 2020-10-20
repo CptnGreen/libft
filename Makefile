@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aimelda <aimelda@student.42.fr>            +#+  +:+       +#+         #
+#    By: slisandr <slisandr@student.21-school.ru    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/12 21:31:09 by slisandr          #+#    #+#              #
-#    Updated: 2020/08/05 10:40:10 by aimelda          ###   ########.fr        #
+#    Updated: 2020/10/20 23:29:11 by slisandr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 .PHONY: all clean fclean re norm
 
-CC = clang
+CC = gcc
 
 CFLAGS = -Wall -Werror -Wextra
 
