@@ -1,4 +1,1 @@
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
-
-#endif // GET_NEXT_LINE_H
+/home/ak/Projects/Corewar/ft_printf/libft/includes/get_next_line.h
