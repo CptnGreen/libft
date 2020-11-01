@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: slisandr <slisandr@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 18:31:57 by slisandr          #+#    #+#             */
-/*   Updated: 2020/03/06 03:50:43 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/11/01 20:15:22 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@
 # include <stdlib.h>
 
 # define BUFF_SIZE 1
+
+/*
+** This flag toggles whether gnl returns just standard output codes
+** or additional too
+*/
+
+#define GNL_ENHANCED 1
 
 int		get_next_line(int const fd, char **line);
 

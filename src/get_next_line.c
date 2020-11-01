@@ -6,7 +6,7 @@
 /*   By: slisandr <slisandr@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 17:50:19 by slisandr          #+#    #+#             */
-/*   Updated: 2020/09/30 02:34:18 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/11/01 20:14:59 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,17 +90,24 @@ int		cut_off_line(char **tail, char **line)
 /*
 ** This function is called iteratively upon tail when
 ** there is nothing more to be appended to it
+**
+** It returns:
+** - 0 if tail is NULL (excessive call) or empty (last call)
+** - 1 if successfully found '\n' and another line was cut from tail
+** - 2 if there is no more '\n' so all of the remaining tail becomes last line
 */
 
 int		cut_from_remainder(char **tail, char **line)
 {
+	if (!(*tail))
+		return (0);
 	if (cut_off_line(tail, line))
 		return (1);
 	if (ft_strlen(*tail) > 0)
 	{
 		*line = ft_strdup(*tail);
 		ft_strdel(tail);
-		return (1);
+		return (2);
 	}
 	return (0);
 }
@@ -110,6 +117,8 @@ int		cut_from_remainder(char **tail, char **line)
 ** - (-1) on error
 ** - (1) if successfully read new line
 ** - (0) if no more lines present
+** if GNL_ENHANCED equals 1: 
+** - (2) on the last line not ending with '\n'
 **
 ** PS: Why 12000? Not sure but it seems that upper limit for 
 ** the quantity of file descriptors is 2^20 but 12K is always enough
@@ -135,8 +144,8 @@ int		get_next_line(int const fd, char **line)
 			return (1);
 		buff = ft_strnew(BUFF_SIZE);
 	}
-	if (cut_from_remainder(&tail[fd], line))
-		return (1);
+	if ((ret = cut_from_remainder(&tail[fd], line)) > 0)
+		return ((GNL_ENHANCED == 1) ? (ret) : 1);
 	ft_strdel(&tail[fd]);
 	return (0);
 }
