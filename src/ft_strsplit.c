@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: slisandr <slisandr@student.21-school.ru    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/02 19:54:02 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/05 01:27:13 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/11/01 08:59:26 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static size_t		count_words(char const *s, char c)
 }
 
 /*
-** ft_strsplit() allocates (with malloc(3)) and returnes
+** ft_strsplit() allocates (with malloc(3)) and returns
 ** an array of "fresh" strings (all ending with '\0',
 ** including the array itself) obtained by splitting s using
 ** the character c as a delimeter. If the allocation fails
