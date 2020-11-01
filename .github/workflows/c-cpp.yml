@@ -8,16 +8,16 @@ on:
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
-
+    runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
-    - name: install ceedling
+    # - name: "Copy gnl header to the tests dir"
+    #   run: ln -s includes/get_next_line.h test/includes/get_next_line.h
+    - name: "Install ceedling"
       run: sudo gem install ceedling
-    - name: add ceedling to path
+    - name: "Add Ceedling to PATH"
       run: export PATH="$PATH:~/.gem/ruby/2.5.0/bin"
-    - name: compile libft library
+    - name: "Compile libft library"
       run: make
-    - name: run tests
+    - name: "Run unit tests"
       run: ceedling
