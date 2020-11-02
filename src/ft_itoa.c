@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: slisandr <slisandr@student.21~.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/15 04:43:07 by slisandr          #+#    #+#             */
-/*   Updated: 2019/05/07 12:17:55 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/11/02 08:04:35 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-#define ARRAY_SIZE(Value, Length) ((Value < 0) ? (Length + 2) : (Length + 1))
 
 static int		get_len(int n)
 {
@@ -42,7 +40,7 @@ static void		get_array(char *str, int n, int len)
 	if (n < 0)
 		str[0] = '-';
 	n_copy = ((n < 0) ? (n * (-1)) : (n));
-	i = ARRAY_SIZE(n, len) - 2;
+	i = ((n < 0) ? (len + 2) : (len + 1)) - 2;
 	while (n_copy > 0)
 	{
 		str[i] = n_copy % 10 + '0';
@@ -57,10 +55,10 @@ char			*ft_itoa(int n)
 	char	*str;
 
 	len = get_len(n);
-	str = (char *)malloc(sizeof(char) * ARRAY_SIZE(n, len));
+	str = (char *)malloc(sizeof(char) * ((n < 0) ? (len + 2) : (len + 1)));
 	if (str)
 	{
-		str[ARRAY_SIZE(n, len) - 1] = '\0';
+		str[((n < 0) ? (len + 2) : (len + 1)) - 1] = '\0';
 		if (n == 0)
 			str[0] = '0';
 		else if (n == -2147483648)

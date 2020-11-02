@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slisandr <slisandr@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: slisandr <slisandr@student.21-s~.ru>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 17:50:19 by slisandr          #+#    #+#             */
-/*   Updated: 2020/11/01 20:14:59 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/11/02 07:52:03 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,10 +117,10 @@ int		cut_from_remainder(char **tail, char **line)
 ** - (-1) on error
 ** - (1) if successfully read new line
 ** - (0) if no more lines present
-** if GNL_ENHANCED equals 1: 
+** if GNL_ENHANCED equals 1:
 ** - (2) on the last line not ending with '\n'
 **
-** PS: Why 12000? Not sure but it seems that upper limit for 
+** PS: Why 12000? Not sure but it seems that upper limit for
 ** the quantity of file descriptors is 2^20 but 12K is always enough
 */
 

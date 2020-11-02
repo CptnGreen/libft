@@ -1,16 +1,12 @@
 # libft
 
-### Library compilation
-
-To compile `libft` just type from the root of the project:
+To compile `libft` type from the root of the project:
 
 ```bash
 make
 ```
 
-### Unit tests
-
-To launch all unit-tests run:
+To launch Ceedling unit-tests:
 
 ```bash
 ceedling test all

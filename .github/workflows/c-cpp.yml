@@ -11,13 +11,27 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
-    # - name: "Copy gnl header to the tests dir"
-    #   run: ln -s includes/get_next_line.h test/includes/get_next_line.h
+
+      # Library compilation:
+    - name: "Compile libft library"
+      run: make
+
+      # Unit-testing:
     - name: "Install ceedling"
       run: sudo gem install ceedling
     - name: "Add Ceedling to PATH"
       run: export PATH="$PATH:~/.gem/ruby/2.5.0/bin"
-    - name: "Compile libft library"
-      run: make
-    - name: "Run unit tests"
+    - name: "Run unit-tests"
       run: ceedling
+
+      # Norminetting (doesn't fail on errors!):
+    - name: "Install norminette"
+      run: |
+        sudo apt-get install ruby ruby-bundler ruby-dev build-essential
+        git clone https://github.com/42Paris/norminette.git ~/.norminette/
+        cd ~/.norminette/
+        bundle
+    - name: "Run norminette tests"
+      run: |
+        cd ~/work/libft/libft
+        ~/.norminette/norminette.rb src/* includes/* 
