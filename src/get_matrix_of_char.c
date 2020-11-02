@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_matrix_of_dots.c                               :+:      :+:    :+:   */
+/*   get_matrix_of_char.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slisandr <slisandr@student.21-sch...>      +#+  +:+       +#+        */
+/*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 02:34:14 by slisandr          #+#    #+#             */
-/*   Updated: 2020/02/05 04:47:56 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/11/02 08:39:15 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	**get_matrix_of_char(unsigned int rows, unsigned int cols, char c)
 	unsigned int		i;
 	unsigned int		j;
 
-	if (rows == 0 ||										\
+	if (rows == 0 || \
 		!(matrix = (char **)malloc((rows + 1) * sizeof(char *))))
 		return (NULL);
 	i = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aimelda <aimelda@student.42.fr>            +#+  +:+       +#+        */
+/*   By: slisandr <slisandr@student.21~.ru>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/12 21:38:18 by slisandr          #+#    #+#             */
-/*   Updated: 2020/08/05 10:39:28 by aimelda          ###   ########.fr       */
+/*   Updated: 2020/11/02 08:36:19 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 
 # include "get_next_line.h"
 
-typedef struct		s_list
+typedef struct	s_list
 {
-	void				*content;
-	struct s_list		*next;
+	void			*content;
+	struct s_list	*next;
 }				t_list;
 
 /*

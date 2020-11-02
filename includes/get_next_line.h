@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: slisandr <slisandr@student.21-school.ru    +#+  +:+       +#+        */
+/*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 18:31:57 by slisandr          #+#    #+#             */
-/*   Updated: 2020/11/01 20:15:22 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/11/02 08:39:15 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 ** or additional too
 */
 
-#define GNL_ENHANCED 1
+# define GNL_ENHANCED 1
 
 int		get_next_line(int const fd, char **line);
 
