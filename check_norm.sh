@@ -5,7 +5,7 @@ declare norminette="~/.norminette/norminette.rb"
 
 main()
 {
-	rm "${log}"
+	[[ -f $log ]] && rm "${log}"
 	"${norminette}" src includes 2>/dev/null > "${log}"
 	cat "${log}"
 	if cat "${log}" | grep "Error"; then

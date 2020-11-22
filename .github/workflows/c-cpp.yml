@@ -33,5 +33,4 @@ jobs:
         bundle
     - name: "Run norminette tests"
       run: |
-        cd ~/work/libft/libft
-        ~/.norminette/norminette.rb src/* includes/* 
+        make norm
