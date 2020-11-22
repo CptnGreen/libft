@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: slisandr <slisandr@student.21-school.ru    +#+  +:+       +#+         #
+#    By: slisandr <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/12 21:31:09 by slisandr          #+#    #+#              #
-#    Updated: 2020/10/20 23:29:11 by slisandr         ###   ########.fr        #
+#    Updated: 2020/11/02 09:00:18 by slisandr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -132,4 +132,4 @@ re: fclean all
 exec: $(NAME)
 	@ gcc -I "includes/" main.c -L . -lft -o $(EXEC)
 norm:
-	@ norminette $(SRC_DIR) includes
+	@ ./check_norm.sh
