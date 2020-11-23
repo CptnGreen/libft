@@ -1,12 +1,13 @@
 #!/bin/bash
 
-declare log="norminette.txt"
-declare norminette="~/.norminette/norminette.rb"
+declare log="norminette.log"
+declare norminette="${HOME}/.norminette/norminette.rb"
 
 main()
 {
 	[[ -f $log ]] && rm "${log}"
-	"${norminette}" src includes 2>/dev/null > "${log}"
+	echo -e "------------------\nNorminette check\n"
+	ruby "${norminette}" src includes > "${log}"
 	cat "${log}"
 	if cat "${log}" | grep "Error"; then
 		exit 1
