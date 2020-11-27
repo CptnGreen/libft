@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 18:31:57 by slisandr          #+#    #+#             */
-/*   Updated: 2020/11/23 08:02:20 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/11/27 20:31:00 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,13 @@
 
 # define GNL_ENHANCED 1
 
-int		get_next_line(int const fd, char **line);
+typedef struct	s_fd
+{
+	char		*txt;
+	char		*cur;
+	int			fd;
+}				t_fd;
+
+int				get_next_line(int const fd, char **line);
 
 #endif

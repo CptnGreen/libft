@@ -5,147 +5,127 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/15 17:50:19 by slisandr          #+#    #+#             */
-/*   Updated: 2020/11/02 08:39:15 by slisandr         ###   ########.fr       */
+/*   Created: 2019/10/06 15:44:50 by aimelda           #+#    #+#             */
+/*   Updated: 2020/11/27 20:31:13 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 /*
-** Returns:
-** - (-1) if couldn't find '\n' in a string
-** - some integer - position of the first '\n' - if it was found in the string
+** The function returns:
+** -1	- if an error has happened
+** 0	- if the reading has been completed
+** 1	- if a line has been read and the line terminates with EOL
+** 2	- if a line has been read and the line terminates with EOF
 */
 
-int		get_endline_symbol_position(char *tail)
+static void		del(void *st)
 {
-	int		i;
-
-	i = 0;
-	while (tail[i] != '\n' && tail[i] != '\0')
-		i++;
-	if (tail[i] == '\n')
-	{
-		tail[i] = '\0';
-		return (i);
-	}
-	else
-		return (-1);
+	free(((t_fd*)st)->txt);
+	free(st);
 }
 
-/*
-** This function appends contents of the buff to the tail and
-** returns pointer to the updated tail (ptr)
-*/
-
-char	*increase_tail(char *tail, char *buff)
+static int		fd_new(char *str, int fd, t_list **fd_lst)
 {
-	size_t	i;
-	size_t	j;
-	char	*ptr;
+	t_list	*tmp;
 
-	i = 0;
-	j = 0;
-	if (tail)
-		i = ft_strlen(tail);
-	if (buff)
-		j = ft_strlen(buff);
-	if (!(ptr = (char *)ft_memalloc(sizeof(*ptr) * (i + j + 1))))
-		return (NULL);
-	ft_memcpy(ptr, tail, i);
-	ft_memcpy(ptr + i, buff, j);
-	ptr[i + j] = '\0';
-	ft_strdel(&tail);
-	ft_bzero(buff, BUFF_SIZE + 1);
-	return (ptr);
-}
-
-/*
-** This function chops '\n'-ending piece from the tail and stores it
-** into line
-**
-** It returns:
-** - (0) if there is nothing left to cut
-** - (1) if cut successfully
-*/
-
-int		cut_off_line(char **tail, char **line)
-{
-	int		endl_position;
-	char	*leftover;
-
-	endl_position = get_endline_symbol_position(*tail);
-	if (endl_position > -1)
+	if (*fd_lst && ((t_fd*)((*fd_lst)->content))->fd == fd)
 	{
-		*line = ft_strdup(*tail);
-		leftover = *tail;
-		*tail = ft_strdup(*tail + endl_position + 1);
-		ft_strdel(&leftover);
+		((t_fd*)((*fd_lst)->content))->cur = str;
 		return (1);
 	}
-	return (0);
-}
-
-/*
-** This function is called iteratively upon tail when
-** there is nothing more to be appended to it
-**
-** It returns:
-** - 0 if tail is NULL (excessive call) or empty (last call)
-** - 1 if successfully found '\n' and another line was cut from tail
-** - 2 if there is no more '\n' so all of the remaining tail becomes last line
-*/
-
-int		cut_from_remainder(char **tail, char **line)
-{
-	if (!(*tail))
+	if (!(tmp = ft_lstnew(NULL)))
 		return (0);
-	if (cut_off_line(tail, line))
-		return (1);
-	if (ft_strlen(*tail) > 0)
+	if (!(tmp->content = (t_fd*)malloc(sizeof(t_fd))))
+		return (0);
+	if (!(((t_fd*)tmp->content)->txt = ft_strdup(str)))
+		return (0);
+	((t_fd*)tmp->content)->cur = ((t_fd*)tmp->content)->txt;
+	((t_fd*)tmp->content)->fd = fd;
+	ft_lstadd(fd_lst, tmp);
+	return (1);
+}
+
+static int		is_eol(char **line, char *buf, t_list **fd_lst, int fd)
+{
+	char	*str;
+	int		ret;
+
+	ret = 0;
+	if ((str = ft_strchr(buf, '\n')))
 	{
-		*line = ft_strdup(*tail);
-		ft_strdel(tail);
-		return (2);
+		ret = 1;
+		*(str++) = '\0';
+		if (!(buf = ft_strjoin(*line, buf)))
+			return (-1);
+		if (*str == '\0' && *fd_lst)
+			if (((t_fd*)((*fd_lst)->content))->fd == fd)
+				((t_fd*)((*fd_lst)->content))->fd = -1;
+		if (*str != '\0')
+			if (!fd_new(str, fd, fd_lst))
+				return (-1);
+	}
+	else if (!(buf = ft_strjoin(*line, buf)))
+		return (-1);
+	free(*line);
+	*line = buf;
+	return (ret);
+}
+
+static int		check_fd(int fd, t_list **head_lst, char **line)
+{
+	t_list	*fd_lst;
+	t_list	*tmp;
+	int		ret;
+
+	fd_lst = *head_lst;
+	tmp = NULL;
+	while (fd_lst)
+	{
+		if (((t_fd*)((fd_lst)->content))->fd == fd)
+		{
+			ret = is_eol(line, ((t_fd*)((fd_lst)->content))->cur, &fd_lst, fd);
+			if (!ret || (((t_fd*)((fd_lst)->content))->fd) == -1)
+			{
+				if (tmp)
+					tmp->next = fd_lst->next;
+				else
+					*head_lst = fd_lst->next;
+				ft_lstdelone(fd_lst, del);
+			}
+			return (ret);
+		}
+		tmp = fd_lst;
+		fd_lst = fd_lst->next;
 	}
 	return (0);
 }
 
-/*
-** get_next_line() returns:
-** - (-1) on error
-** - (1) if successfully read new line
-** - (0) if no more lines present
-** if GNL_ENHANCED equals 1:
-** - (2) on the last line not ending with '\n'
-**
-** PS: Why 12000? Not sure but it seems that upper limit for
-** the quantity of file descriptors is 2^20 but 12K is always enough
-*/
-
-int		get_next_line(int const fd, char **line)
+int				get_next_line(const int fd, char **line)
 {
-	static char		*tail[12000];
-	char			*buff;
+	char			buf[BUFF_SIZE + 1];
+	static t_list	*fd_list;
 	int				ret;
 
-	buff = ft_strnew(BUFF_SIZE);
-	if (BUFF_SIZE <= 0 || fd < 0 || (ret = read(fd, buff, 0)) < 0)
-	{
-		ft_strdel(&buff);
+	if (fd < 0 || !line || !(*line = (char*)malloc(1)))
 		return (-1);
-	}
-	while ((ret = read(fd, buff, BUFF_SIZE)) > 0)
-	{
-		tail[fd] = increase_tail(tail[fd], buff);
-		ft_strdel(&buff);
-		if (cut_off_line(&tail[fd], line))
-			return (1);
-		buff = ft_strnew(BUFF_SIZE);
-	}
-	if ((ret = cut_from_remainder(&tail[fd], line)) > 0)
-		return ((GNL_ENHANCED == 1) ? (ret) : 1);
-	ft_strdel(&tail[fd]);
-	return (0);
+	**line = '\0';
+	if (!(ret = check_fd(fd, &fd_list, line)))
+		while ((ret = read(fd, buf, BUFF_SIZE)) > 0)
+		{
+			*(buf + ret) = '\0';
+			if ((ret = is_eol(line, buf, &fd_list, fd)))
+				break ;
+		}
+	if (!ret && **line != '\0')
+		return (2);
+	if (ret == 1)
+		return (1);
+	free(*line);
+	*line = NULL;
+	if (!ret)
+		return (0);
+	ft_lstdel(&fd_list, del);
+	return (-1);
 }
