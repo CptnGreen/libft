@@ -6,7 +6,7 @@
 #    By: slisandr <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/12 21:31:09 by slisandr          #+#    #+#              #
-#    Updated: 2020/11/02 09:00:18 by slisandr         ###   ########.fr        #
+#    Updated: 2020/11/29 09:46:00 by slisandr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,8 +17,6 @@ CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 
 NAME = libft.a
-
-TEST_FILE = ./test
 
 SRC_DIR = src
 OBJ_DIR = obj
@@ -110,7 +108,7 @@ OBJ = $(addprefix $(OBJ_DIR)/,$(SRC_RAW:.c=.o))
 EXEC = program
 
 
-all: $(NAME) test
+all: $(NAME)
 
 $(NAME): $(OBJ_DIR) $(OBJ)
 	@ ar rc $(NAME) $(OBJ)

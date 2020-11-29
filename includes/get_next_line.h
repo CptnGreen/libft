@@ -6,7 +6,7 @@
 /*   By: slisandr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/15 18:31:57 by slisandr          #+#    #+#             */
-/*   Updated: 2020/11/27 20:31:00 by slisandr         ###   ########.fr       */
+/*   Updated: 2020/11/29 09:44:59 by slisandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,6 @@
 # include <stdlib.h>
 
 # define BUFF_SIZE 1
-
-/*
-** This flag toggles whether gnl returns just standard output codes
-** or additional too
-*/
-
-# define GNL_ENHANCED 1
 
 typedef struct	s_fd
 {
