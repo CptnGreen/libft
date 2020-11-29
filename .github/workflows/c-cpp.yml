@@ -16,7 +16,6 @@ jobs:
 
     steps:
 
-    - uses: actions/checkout@v2
     - uses: actions/setup-ruby@v1
       with:
         ruby-version: '2.5'
@@ -31,7 +30,6 @@ jobs:
         git clone https://github.com/42Paris/norminette.git ~/.norminette/
         cd ~/.norminette/
         bundle
-        cd ~/work/libft/libft
 
   build:
     needs: prepare
@@ -42,6 +40,10 @@ jobs:
         os: [ubuntu-18.04, macOS-10.15]
 
     steps:
+
+    - name: "Clone actual repo"
+      uses: actions/checkout@v2
+
     - name: "Compile libft library"
       run: make
 
@@ -54,6 +56,9 @@ jobs:
         os: [ubuntu-18.04, macOS-10.15]
 
     steps:
+    - name: "cd into project root"
+      run: cd ~/work/libft/libft
+
     - name: "Run unit-tests"
       run: ceedling
 
