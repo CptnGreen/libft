@@ -7,12 +7,16 @@ on:
     branches: [ master ]
 
 jobs:
-  prepare:
+
+  test:
 
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-18.04, macOS-10.15]
+    defaults:
+        run:
+          shell: bash
 
     steps:
 
@@ -21,32 +25,11 @@ jobs:
       with:
         ruby-version: '2.5'
 
-
-  build:
-    needs: prepare
-
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-18.04, macOS-10.15]
-
-    steps:
-
     - name: "Clone actual repo"
       uses: actions/checkout@v2
 
     - name: "Compile libft library"
       run: make
-
-  test-norminette:
-    needs: prepare
-
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-18.04, macOS-10.15]
-
-    steps:
 
     - name: "Install norminette"
       run: |
@@ -57,15 +40,6 @@ jobs:
     - name: "Run norminette tests"
       run: make norm
 
-  test-ceedling:
-    needs: build
-
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-18.04, macOS-10.15]
-
-    steps:
     - name: "Install ceedling"
       run: sudo gem install ceedling
     - name: "Add Ceedling to PATH"
