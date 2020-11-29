@@ -46,6 +46,7 @@ jobs:
 
     - name: "Show some info"
       run: |
+        sudo chsh -s /bin/bash runner
         [[ command -v apt ]] && { pwd; sudo apt install tree; tree; cd ~/runner/libft/libft; pwd; tree; }
 
     - name: "Compile libft library"
