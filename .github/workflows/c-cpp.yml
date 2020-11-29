@@ -44,6 +44,14 @@ jobs:
     - name: "Clone actual repo"
       uses: actions/checkout@v2
 
+    - name: "Show some info"
+      run: |
+        pwd
+        tree
+        cd ~/runner/libft/libft
+        pwd
+        tree
+
     - name: "Compile libft library"
       run: make
 
