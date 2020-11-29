@@ -141,4 +141,4 @@ void test_corewar_death_bot_start(void)
 //     ft_strdel(&line);
 //     close(fd);
 //     remove("test/gnl_test.txt");
-}
+// }
