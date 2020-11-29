@@ -20,11 +20,6 @@ jobs:
       with:
         ruby-version: '2.5'
 
-    - name: "Install ceedling"
-      run: sudo gem install ceedling
-    - name: "Add Ceedling to PATH"
-      run: export PATH="$PATH:~/.gem/ruby/2.5.0/bin:/usr/local/lib/ruby/gems/2.5.0/gems/ceedling-0.30.0/bin"
-
     - name: "Install norminette"
       run: |
         git clone https://github.com/42Paris/norminette.git ~/.norminette/
@@ -44,13 +39,22 @@ jobs:
     - name: "Clone actual repo"
       uses: actions/checkout@v2
 
-    - name: "Show some info"
-      run: ls
-
     - name: "Compile libft library"
       run: make
 
-  test:
+  test-norminette:
+    needs: prepare
+
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-18.04, macOS-10.15]
+
+    steps:
+    - name: "Run norminette tests"
+      run: make norm
+
+  test-ceedling:
     needs: build
 
     runs-on: ${{ matrix.os }}
@@ -59,11 +63,10 @@ jobs:
         os: [ubuntu-18.04, macOS-10.15]
 
     steps:
-    - name: "cd into project root"
-      run: cd ~/work/libft/libft
+    - name: "Install ceedling"
+      run: sudo gem install ceedling
+    - name: "Add Ceedling to PATH"
+      run: export PATH="$PATH:~/.gem/ruby/2.5.0/bin:/usr/local/lib/ruby/gems/2.5.0/gems/ceedling-0.30.0/bin"
 
     - name: "Run unit-tests"
       run: ceedling
-
-    - name: "Run norminette tests"
-      run: make norm
