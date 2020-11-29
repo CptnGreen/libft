@@ -45,9 +45,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: "Show some info"
-      run: |
-        sudo chsh -s /bin/bash runner
-        [[ command -v apt ]] && { pwd; sudo apt install tree; tree; cd ~/runner/libft/libft; pwd; tree; }
+      run: ls
 
     - name: "Compile libft library"
       run: make
