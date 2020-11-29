@@ -16,15 +16,11 @@ jobs:
 
     steps:
 
-    - uses: actions/setup-ruby@v1
+    - name: "Setup Ruby for Ceedling and Norminette"
+      uses: actions/setup-ruby@v1
       with:
         ruby-version: '2.5'
 
-    - name: "Install norminette"
-      run: |
-        git clone https://github.com/42Paris/norminette.git ~/.norminette/
-        cd ~/.norminette/
-        bundle
 
   build:
     needs: prepare
@@ -51,6 +47,13 @@ jobs:
         os: [ubuntu-18.04, macOS-10.15]
 
     steps:
+
+    - name: "Install norminette"
+      run: |
+        git clone https://github.com/42Paris/norminette.git ~/.norminette/
+        cd ~/.norminette/
+        bundle
+
     - name: "Run norminette tests"
       run: make norm
 
