@@ -31,7 +31,7 @@ jobs:
         git clone https://github.com/42Paris/norminette.git ~/.norminette/
         cd ~/.norminette/
         bundle
-        cd /home/runner/work/libft/libft
+        cd ~/work/libft/libft
 
   build:
     needs: prepare
