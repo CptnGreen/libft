@@ -20,49 +20,58 @@ void tearDown(void)
 
 void test_zero_char(void)
 {
-    TEST_ASSERT_EQUAL_INT(isdigit('0'), ft_isdigit('0'));
+    // TEST_ASSERT_EQUAL_INT(isdigit('0'), ft_isdigit('0'));
+    TEST_ASSERT_GREATER_THAN(0, ft_isdigit('0'));
 }
 
 void test_three_char(void)
 {
-    TEST_ASSERT_EQUAL_INT(isdigit('3'), ft_isdigit('3'));
+    // TEST_ASSERT_EQUAL_INT(isdigit('3'), ft_isdigit('3'));
+    TEST_ASSERT_GREATER_THAN(0, ft_isdigit('3'));
 }
 
 /*
 ** Is not digit:
 */
 
-void test_three_abs(void)
+void test_three_asci(void)
 {
-    TEST_ASSERT_EQUAL_INT(isdigit(3), ft_isdigit(3));
+    // TEST_ASSERT_EQUAL_INT(isdigit(3), ft_isdigit(3));
+    TEST_ASSERT_EQUAL_INT(0, ft_isdigit(3));
 }
 
 void test_a(void)
 {
-    TEST_ASSERT_EQUAL_INT(isdigit('a'), ft_isdigit('a'));
+    // TEST_ASSERT_EQUAL_INT(isdigit('a'), ft_isdigit('a'));
+    TEST_ASSERT_EQUAL_INT(0, ft_isdigit('a'));
 }
 
 void test_big_a(void)
 {
-    TEST_ASSERT_EQUAL_INT(isdigit('A'), ft_isdigit('A'));
+    // TEST_ASSERT_EQUAL_INT(isdigit('A'), ft_isdigit('A'));
+    TEST_ASSERT_EQUAL_INT(0, ft_isdigit('A'));
 }
 
 void test_dot(void)
 {
-    TEST_ASSERT_EQUAL_INT(isdigit('.'), ft_isdigit('.'));
+    // TEST_ASSERT_EQUAL_INT(isdigit('.'), ft_isdigit('.'));
+    TEST_ASSERT_EQUAL_INT(0, ft_isdigit('.'));
 }
 
 void test_max(void)
 {
-    TEST_ASSERT_EQUAL_INT(isdigit(UCHAR_MAX), ft_isdigit(UCHAR_MAX));
+    // TEST_ASSERT_EQUAL_INT(isdigit(UCHAR_MAX), ft_isdigit(UCHAR_MAX));
+    TEST_ASSERT_EQUAL_INT(0, ft_isdigit(UCHAR_MAX));
 }
 
 void test_almost_max(void)
 {
-    TEST_ASSERT_EQUAL_INT(isdigit(UCHAR_MAX - 1), ft_isdigit(UCHAR_MAX - 1));
+    // TEST_ASSERT_EQUAL_INT(isdigit(UCHAR_MAX - 1), ft_isdigit(UCHAR_MAX - 1));
+    TEST_ASSERT_EQUAL_INT(0, ft_isdigit(UCHAR_MAX - 1));
 }
 
 void test_min(void)
 {
-    TEST_ASSERT_EQUAL_INT(isdigit(0), ft_isdigit(0));
+    // TEST_ASSERT_EQUAL_INT(isdigit(0), ft_isdigit(0));
+    TEST_ASSERT_EQUAL_INT(0, ft_isdigit(0));
 }
