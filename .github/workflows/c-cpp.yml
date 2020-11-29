@@ -46,8 +46,7 @@ jobs:
 
     - name: "Show some info"
       run: |
-        pwd
-        [[ command -v apt ]] && { sudo apt install tree; tree; cd ~/runner/libft/libft; pwd; tree; }
+        [[ command -v apt ]] && { pwd; sudo apt install tree; tree; cd ~/runner/libft/libft; pwd; tree; }
 
     - name: "Compile libft library"
       run: make
