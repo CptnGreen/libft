@@ -12,6 +12,10 @@ void tearDown(void)
 {
 }
 
+/*
+** TODO: uncomment and fix tests
+*/
+
 // void test_four_line_last_empty(void)
 // {
 //     size_t	fd;
