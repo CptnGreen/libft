@@ -29,11 +29,9 @@ jobs:
     - name: "Install norminette"
       run: |
         git clone https://github.com/42Paris/norminette.git ~/.norminette/
-        project_root="${PWD}"
-        echo "========\nProject root: ${project_root}\n========"
         cd ~/.norminette/
         bundle
-        cd "${project_root}"
+        cd /home/runner/work/libft/libft
 
   build:
     needs: prepare
