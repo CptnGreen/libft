@@ -23,7 +23,7 @@ jobs:
     - name: "Install ceedling"
       run: sudo gem install ceedling
     - name: "Add Ceedling to PATH"
-      run: export PATH="$PATH:~/.gem/ruby/2.5.0/bin"
+      run: export PATH="$PATH:~/.gem/ruby/2.5.0/bin:/usr/local/lib/ruby/gems/2.5.0/gems/ceedling-0.30.0/bin"
 
     - name: "Install norminette"
       run: |
